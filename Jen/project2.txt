@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Aug 13 14:02:15 2022
+
+@author: Ju5t1@e
+"""
+
+import pandas as pd
+import matplotlib.pyplot as plt
+file = r'C:\\Users\\User\\Documents\\Python\\Jen\\Data.xlsx' # Replacce with your file path
+
+data = pd.read_excel(file)
+gauge_2000 = data.loc[data['YEAR']==2000,'GAUGE DATA']
+gauge_2001 = data.loc[data['YEAR']==2001,'GAUGE DATA']
+satellite_2000 = data.loc[data['YEAR']==2000, 'SATELLITE DATA']
+satellite_2001 = data.loc[data['YEAR']==2001, 'SATELLITE DATA']
+
+plt.scatter(gauge_2000,satellite_2000)
+plt.xlabel('Gauge data')
+plt.ylabel('Satellite data')
+
+plt.scatter(gauge_2001,satellite_2001)
+plt.xlabel('Gauge data')
+plt.ylabel('Satellite data')
+
+plt.show()
+

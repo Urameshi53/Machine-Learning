@@ -1,0 +1,71 @@
+
+import 'package:classapp_new/announcement.dart';
+import 'package:classapp_new/homePage.dart';
+import 'package:flutter/material.dart';
+
+class AnnouncementsPage extends StatefulWidget {
+  const AnnouncementsPage({Key? key}) : super(key: key);
+
+  @override
+  State<AnnouncementsPage> createState() => _AnnouncementsPageState();
+}
+
+class _AnnouncementsPageState extends State<AnnouncementsPage> {
+  var a1 = Announcement('Class is cancelled','The Literature class for today has been cancelled','10:54 am');
+  var a2 = Announcement('title', 'Body', '12:10 pm');
+  var a3 = Announcement('Hello', 'This is a dummy announcement', '1:23 pm');
+  var announcements = <Announcement>[];// = [a1,a2,a3];
+  final _biggerFont = const TextStyle(fontSize: 18);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Announcements'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: _goHome,
+        ),
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+          itemBuilder: (context, i){
+          announcements.add(a1);
+          announcements.add(a2);
+          announcements.add(a3);
+
+          final index = i ~/ 2;
+
+          return Center(
+            child: Card(
+              child: SizedBox(
+                width: 300,
+                height: 100,
+                child: ListTile(
+                  title: Text(
+                    announcements[index].title,
+                    style: _biggerFont,
+                  ),
+                  subtitle: Text(
+                    announcements[index].body,
+                  ),
+                )
+              ),
+            ),
+          );
+          }
+      ),
+    );
+  }
+
+  void _goHome(){
+    Navigator.pop(context);
+    /*Navigator.of(context).push(
+      MaterialPageRoute(
+          builder: (context){
+            return const HomePage();
+          }
+      )
+    );*/
+  }
+}
